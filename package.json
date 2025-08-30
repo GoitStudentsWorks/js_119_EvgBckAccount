@@ -17,6 +17,7 @@
   "author": "Alexander Repeta <alexander.repeta@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "@cloudfour/simple-svg-placeholder": "^1.1.0",
     "axios": "^1.11.0",
     "boxicons": "^2.1.4",
     "css-loader": "^7.1.2",

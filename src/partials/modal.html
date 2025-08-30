@@ -1,9 +1,27 @@
-<div id="modal-backdrop" class="is-open">
+<div
+  id="artistModal"
+  class="modal"
+  aria-hidden="true"
+  role="dialog"
+  aria-labelledby="modalTitle"
+  aria-modal="true"
+>
+  <div class="modal__content" tabindex="-1">
+    <button id="modalClose" class="modal__close" aria-label="Close modal">
+      <i class="bx bx-x"></i>
+    </button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<div id="globalLoader" class="loader"></div>
+
+<!-- <div id="modal-backdrop" class="is-open">
   <div id="artist-details-modal">
     <button type="button" class="btn-modal-close" data-modal-close>
-      <!-- <svg class="icon modal-close" width="32" height="32">
+       <svg class="icon modal-close" width="32" height="32">
             <use href="./images/icons.svg#icon-close"></use>
-          </svg> -->
+          </svg> 
     </button>
     <h1 id="artist-name">kff</h1>
     <img
@@ -36,4 +54,4 @@
       <ul id="albums-list"></ul>
     </div>
   </div>
-</div>
+</div> -->

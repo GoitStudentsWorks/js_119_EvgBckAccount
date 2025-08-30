@@ -1,8 +1,7 @@
 export const refs = {
-  btnModalClose: document.querySelector('btn-modal-close'),
-  artistDetailsInfo: document.querySelectorAll('.artist-details-info'),
-  artistName: document.querySelector('#artist-name'),
-  artistPhoto: document.querySelector('#artist-photo'),
-  genresList: document.querySelector('#genres-list'),
-  albumsList: document.querySelector('ul#albums-list'),
+  modal: document.getElementById('artistModal'),
+  modalClose: document.getElementById('modalClose'),
+  modalContentWrapper: document.querySelector('.modal__content'),
+  modalContent: document.getElementById('modalContent'),
+  loader: document.getElementById('globalLoader'),
 };
