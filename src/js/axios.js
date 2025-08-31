@@ -26,6 +26,7 @@ export function showError(message, title = 'Error') {
     message,
     position: 'topRight',
     timeout: 7000,
+    backgroundColor: 'orange',
   });
 }
 
@@ -35,39 +36,40 @@ export function showSuccess(message, title = 'Success') {
     message,
     position: 'topRight',
     timeout: 2000,
+    backgroundColor: 'aqua',
   });
 }
 
-// axios.interceptors.request.use(
-//   config => {
-//     showLoader();
-//     return config;
-//   },
-//   error => {
-//     hideLoader();
-//     showError('Request error');
-//     return Promise.reject(error);
-//   }
-// );
+axios.interceptors.request.use(
+  config => {
+    showLoader();
+    return config;
+  },
+  error => {
+    hideLoader();
+    showError('Request error');
+    return Promise.reject(error);
+  }
+);
 
-// axios.interceptors.response.use(
-//   response => {
-//     hideLoader();
-//     return response;
-//   },
-//   error => {
-//     hideLoader();
-//     const message = error.response
-//       ? `Error ${error.response.status}: ${error.response.statusText}`
-//       : 'Network error, please check your connection';
-//     showError(message);
-//     return Promise.reject(error);
-//   }
-// );
+axios.interceptors.response.use(
+  response => {
+    hideLoader();
+    return response;
+  },
+  error => {
+    hideLoader();
+    const message = error.response
+      ? `Error ${error.response.status}: ${error.response.statusText}`
+      : 'Network error, please check your connection';
+    showError(message);
+    return Promise.reject(error);
+  }
+);
 
 export async function getArtistDetails(id) {
-  const response = await axios.get(`/artists/${id}`);
-  console.log(response.data);
+  const response = await axios.get(`/artiists/${id}`);
+
   return response.data;
 }
 

@@ -1,5 +1,5 @@
 import boxicons from 'boxicons';
-import 'boxicons/css/boxicons.css';
+import 'boxicons/css/boxicons.min.css';
 import simpleSvgPlaceholder from '@cloudfour/simple-svg-placeholder';
 import { refs } from './refs';
 
@@ -25,8 +25,8 @@ function formatDuration(ms) {
 }
 
 function formatYearsActive(start, end) {
-  if (start && end) return `${start} - ${end}`;
-  if (start) return `${start} - present`;
+  if (start && end) return `${start}–${end}`;
+  if (start) return `${start}–present`;
   return 'No information';
 }
 
@@ -79,7 +79,7 @@ export function renderModalContent(artist, albums) {
   let albumsHTML = '';
   if (albumsList && albumsList.length) {
     albumsHTML = `
-      <h3>Albums</h3>
+      <h3 id="albums-title">Albums</h3>
       <ul id="albums-list">
         ${albumsList.map(album => createAlbumHTML(album)).join('')}
       </ul>
@@ -93,24 +93,25 @@ export function renderModalContent(artist, albums) {
   </div> 
   <div id="artist-intro-wrapper">
     <div id="intro-data">
-      <h3 class="artist-details-heading">Years active</h3>
+      <h4 class="artist-details-heading">Years active</h4>
       <p class="artist-details-info">${yearsActive}</p>
-      <h3 class="artist-details-heading">Sex</h3>
+      <h4 class="artist-details-heading">Sex</h4>
       <p class="artist-details-info"> ${strGender ? strGender : ''}</p>
-      <h3 class="artist-details-heading">Members</h3>
+      <h4 class="artist-details-heading">Members</h4>
       <p class="artist-details-info"> ${intMembers ? intMembers : ''}</p>
-      <h3 class="artist-details-heading">Country</h3>
-      <p class="artist-details-info"> ${strCountry ? strCountry : ''}</p>
+      <h4 class="artist-details-heading">Country</h4>
+      <p class="artist-details-info"> ${
+        strCountry ? strCountry.slice(strCountry.lastIndexOf(',') + 2) : ''
+      }</p>
     </div>
     <div id="bio-data">
-      <h3 class="artist-details-heading">Biography</h3>
+      <h4 class="artist-details-heading">Biography</h4>
       <p class="artist-details-info"> ${
         strBiographyEN ? strBiographyEN : ''
       }</p>
     </div>
   </div>
   ${genresMarkup}
-  <h3 id="albums-title">Albums</h3>  
   ${albumsHTML}
 `;
   refs.modalContent.insertAdjacentHTML('afterbegin', modalContentHTML);
@@ -121,7 +122,7 @@ function createAlbumHTML(album) {
   let tracksHTML = '';
   if (tracks && tracks.length) {
     tracksHTML = `
-          <div id="list-headers">
+          <div id="track-list-headers">
             <span>Track</span>
             <span>Time</span>
             <span>Link</span>
@@ -139,8 +140,9 @@ function createAlbumHTML(album) {
                 ${
                   movie
                     ? `<a href="${movie}" target="_blank" rel="noopener noreferrer">
-                    <i class='bxl  bx-youtube'  style='color:#fff'></i> 
-                  </a>`
+                      <i class="bx bxl-youtube bx-tada" style="color: #fff"></i>
+                    </a>
+                    `
                     : '<span></span>'
                 }
               </span>

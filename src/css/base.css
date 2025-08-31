@@ -92,8 +92,8 @@
 body {
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 400;
-  font-size: 18px;
-  line-height: 1.6;
+  font-size: 16px;
+  line-height: 1.5;
   background-color: var(--color-scheme-1-background);
   color: var(--color-scheme-1-text);
 }
