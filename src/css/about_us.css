@@ -38,6 +38,8 @@
         max-width: 64px;
         max-height: 64px;
         margin-bottom: 20px;
+        color: #fff;
+        stroke: rgb(213, 15, 15);
     }
 
     .title {
