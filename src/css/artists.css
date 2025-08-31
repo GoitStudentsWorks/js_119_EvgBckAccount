@@ -1,4 +1,4 @@
-.div-section-wrapper {
+.artists-section {
   padding: 64px 0;
 }
 .artists-title {
@@ -250,7 +250,7 @@
 }
 
 @media screen and (min-width: 1440px) {
-  .div-section-wrapper {
+  .artists-section{
     padding: 112px 0;
   }
   .artists-subtitle {
@@ -333,10 +333,3 @@
     transform: rotate(360deg);
   }
 }
-
-/* .div-section-wrapper {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */
