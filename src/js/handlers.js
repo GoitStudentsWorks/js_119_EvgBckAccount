@@ -7,7 +7,7 @@ import {
 } from './axios';
 import { renderModalContent } from './render';
 
-export async function openModal(artistId = '65adae06af9f6d155db4b23a') {
+export async function openModal(artistId = '65ada69eaf9f6d155db48612') {
   refs.modal.classList.add('active');
   document.body.classList.add('modal-open');
   refs.modalContent.innerHTML =
