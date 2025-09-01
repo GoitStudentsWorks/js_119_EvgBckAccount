@@ -6,3 +6,5 @@ const font = new FontFace("my-font", 'url("my-font.woff")', {
 
 // Add to the document.fonts (FontFaceSet)
 document.fonts.add(font);
+
+import './js/artists.js';
