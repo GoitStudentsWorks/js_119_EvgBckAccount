@@ -59,6 +59,16 @@ export function renderModalContent(artist, albums) {
     genres,
   } = artist;
 
+  const modalBiography = strBiographyEN || '';
+  const splitAt = modalBiography.indexOf('.', 250);
+
+  const collapsedBio =
+    splitAt !== -1
+      ? modalBiography.slice(0, splitAt + 1)
+      : modalBiography.slice(0, 250);
+
+  let expanded = false;
+
   const { albumsList } = albums;
 
   const yearsActive = formatYearsActive(intFormedYear, intDiedYear);
@@ -90,7 +100,7 @@ export function renderModalContent(artist, albums) {
   <h1 id="artist-name">${strArtist}</h1>
   <div id="modal-top-wrapper">
     <div id="modal-artist-photo">
-      <img id="artist-photo" src="${photoSrc}" alt="${strArtist}" onerror="this.onerror=null;this.src='${getPlaceholderDataUri()}'"/>
+      <img id="artist-photo" src="${photoSrc}" alt="${strArtist}" onerror="onerror=null;src='${getPlaceholderDataUri()}'"/>
     </div>
     <div id="artist-intro-wrapper">
       <div class="intro-box">
@@ -112,17 +122,35 @@ export function renderModalContent(artist, albums) {
       </div>
       <div id="bio-data">
         <h4 class="artist-details-heading">Biography</h4>
-        <p class="artist-details-info"> ${
-          strBiographyEN ? strBiographyEN : ''
-        }</p>
+        <p class="artist-details-info">${collapsedBio}</p>
+        <button type="button" id="bio-load-more">
+          <i class="bx bx-caret-down bx-tada-hover" style="color:#fff; background-color:transparent"></i>
+        </button>
       </div>
       ${genresMarkup}
     </div>
   </div>
   ${albumsHTML}
 `;
+
   refs.modalContent.insertAdjacentHTML('afterbegin', modalContentHTML);
-}
+
+  const artistBioText = document.querySelector(
+    '#bio-data > .artist-details-info'
+  );
+  const modalBioIcon = document.querySelector('#bio-load-more > .bx');
+
+  document.querySelector('#bio-load-more').addEventListener('click', () => {
+    expanded = !expanded;
+    if (expanded) {
+      artistBioText.textContent = modalBiography;
+      modalBioIcon.classList.replace('bx-caret-down', 'bx-caret-up');
+    } else {
+      artistBioText.textContent = collapsedBio;
+      modalBioIcon.classList.replace('bx-caret-up', 'bx-caret-down');
+    }
+  });
+} 
 
 function createAlbumHTML(album) {
   const { tracks, strAlbum } = album;
