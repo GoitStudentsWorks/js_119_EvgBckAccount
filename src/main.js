@@ -3,9 +3,8 @@ import iziToast from 'izitoast';
 import boxicons from 'boxicons';
 
 import { refs } from './js/refs';
-import { openModal, closeModal } from './js/handlers';
+import { closeModal, handleModalOpening } from './js/handlers';
 
-openModal();
 
 refs.modalClose.addEventListener('click', closeModal);
 
@@ -20,3 +19,4 @@ document.addEventListener('keydown', e => {
     closeModal();
   }
 });
+
