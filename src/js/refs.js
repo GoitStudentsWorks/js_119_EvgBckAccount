@@ -4,4 +4,5 @@ export const refs = {
   modalContentWrapper: document.querySelector('.modal__content'),
   modalContent: document.getElementById('modal-content'),
   loader: document.getElementById('globalLoader'),
+  artists: document.querySelector('.artists-section'),
 };

@@ -1,3 +1,4 @@
+import './js/artists.js';
 import axios from 'axios';
 import iziToast from 'izitoast';
 import boxicons from 'boxicons';
@@ -63,6 +64,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  if (refs.artists) {
+  refs.artists.addEventListener('click', handleModalOpening);
+}
   
   window.addEventListener("hashchange", () => {
     if (mobileMenu.classList.contains("open")) closeMenu();
@@ -89,4 +93,3 @@ document.addEventListener('keydown', e => {
     closeModal();
   }
 });
-

@@ -1,11 +1,11 @@
-import { refs } from './refs';
+import { refs } from './refs.js';
 import {
   getArtistDetails,
   getArtistAlbums,
   showLoader,
   hideLoader,
 } from './axios';
-import { renderModalContent } from './render';
+import { renderModalContent } from './render.js';
 
 export async function openModal(artistId = '65ada69eaf9f6d155db48612') {
   refs.modal.classList.add('active');
@@ -32,6 +32,18 @@ export async function openModal(artistId = '65ada69eaf9f6d155db48612') {
       refs.modalContentWrapper.style.overflowY = 'scroll';
       refs.modalContentWrapper.style.overflowX = 'hidden';
     }
+  }
+}
+
+export async function handleModalOpening(e) {
+  const btn = e.target.closest('.artists-learn-more-card-btn');
+  if (!btn) return;
+
+  const id = btn.getAttribute('data-artist-id') || '';
+  if (id) {
+    openModal(id);
+  } else {
+    console.warn('Artist ID not found');
   }
 }
 
