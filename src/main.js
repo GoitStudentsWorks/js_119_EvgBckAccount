@@ -1,3 +1,12 @@
+import './js/artists.js';
+import axios from 'axios';
+import iziToast from 'izitoast';
+import boxicons from 'boxicons';
+
+import { refs } from './js/refs';
+import { closeModal, handleModalOpening } from './js/handlers';
+
+
 document.addEventListener("DOMContentLoaded", () => {
   const logoLinks = document.querySelectorAll(".logo, .logo-mobile");
 
@@ -55,6 +64,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  if (refs.artists) {
+  refs.artists.addEventListener('click', handleModalOpening);
+}
   
   window.addEventListener("hashchange", () => {
     if (mobileMenu.classList.contains("open")) closeMenu();
@@ -67,3 +79,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+refs.modalClose.addEventListener('click', closeModal);
+
+refs.modal.addEventListener('click', ev => {
+  if (ev.target === refs.modal) {
+    closeModal();
+  }
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && refs.modal.classList.contains('active')) {
+    closeModal();
+  }
+});
+
