@@ -1,3 +1,6 @@
+
+import './js/feedback.js';
+
 import './js/artists.js';
 import axios from 'axios';
 import iziToast from 'izitoast';
@@ -86,3 +89,4 @@ document.addEventListener('keydown', e => {
     closeModal();
   }
 });
+
