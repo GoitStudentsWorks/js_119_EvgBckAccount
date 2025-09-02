@@ -7,7 +7,7 @@ import {
 } from './axios';
 import { renderModalContent } from './render.js';
 
-export async function openModal(artistId = '65ada69eaf9f6d155db48612') {
+async function openModal(artistId = '65ada69eaf9f6d155db48612') {
   refs.modal.classList.add('active');
   document.body.classList.add('modal-open');
   refs.modalContent.innerHTML =
@@ -35,23 +35,40 @@ export async function openModal(artistId = '65ada69eaf9f6d155db48612') {
   }
 }
 
-export async function handleModalOpening(e) {
-  const btn = e.target.closest('.artists-learn-more-card-btn');
-  if (!btn) return;
-
-  const id = btn.getAttribute('data-artist-id') || '';
-  if (id) {
+export function handleModalOpening(e) {
+  let id = '';
+  if (
+    e.target.nodeName === 'BUTTON' &&
+    e.target.classList.contains('artists-learn-more-card-btn')
+  ) {
+    id = e.target.getAttribute('data-artist-id') || '';
     openModal(id);
+    refs.modalClose.addEventListener('click', closeModal);
+    refs.modal.addEventListener('click', ev => {
+      if (ev.target === refs.modal) {
+        closeModal();
+      }
+    });
   } else {
-    console.warn('Artist ID not found');
+    return;
   }
+}
+
+function clearListeners() {
+  refs.modalClose.removeEventListener('click', closeModal);
+  refs.modal.removeEventListener('click', ev => {
+    if (ev.target === refs.modal) {
+      closeModal();
+    }
+  });
 }
 
 export function closeModal() {
   refs.modal.classList.remove('active');
   document.body.classList.remove('modal-open');
+  clearListeners();
 
   setTimeout(() => {
-    refs.modalContentWrapper.innerHTML = '';
+    refs.modalContent.innerHTML = '';
   }, 300);
 }

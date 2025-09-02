@@ -12,7 +12,9 @@ let currentPage = 1;
 
 window.addEventListener('DOMContentLoaded', initArtists);
 
-function qs(sel) { return document.querySelector(sel); }
+function qs(sel) {
+  return document.querySelector(sel);
+}
 
 async function initArtists() {
   const listEl = qs('.artists-list');
@@ -20,7 +22,9 @@ async function initArtists() {
   const loaderEl = qs('.loader');
 
   if (!listEl || !loadBtn) {
-    console.error('[artists] .artists-list або .artists-load-more-btn не знайдено у DOM');
+    console.error(
+      '[artists] .artists-list або .artists-load-more-btn не знайдено у DOM'
+    );
     return;
   }
 
@@ -29,7 +33,7 @@ async function initArtists() {
 
   // Події
   loadBtn.addEventListener('click', onLoadMore);
-  listEl.addEventListener('click', onArtistCardClick);
+  // listEl.addEventListener('click', onArtistCardClick);
 
   async function onLoadMore() {
     showLoader(true);
@@ -72,9 +76,12 @@ async function fetchArtists(page = 1, limit = LIMIT) {
     });
 
     // Нормалізація форми відповіді
-    const list = Array.isArray(data) ? data
-      : Array.isArray(data?.artists) ? data.artists
-      : Array.isArray(data?.results) ? data.results
+    const list = Array.isArray(data)
+      ? data
+      : Array.isArray(data?.artists)
+      ? data.artists
+      : Array.isArray(data?.results)
+      ? data.results
       : data?.items ?? [];
 
     return list;
@@ -92,16 +99,22 @@ function toggleLoadMore(btn, receivedLen) {
 // ==== шаблон та хелпери ====
 
 function createArtistsMarkup(arr = []) {
-  return arr.map(({ _id, genres, strArtist, strArtistThumb, strBiographyEN }) => {
-    const img = strArtistThumb || './img/placeholders/artist@1x.jpg'; // поклади плейсхолдер у public/img/placeholders/
-    const name = strArtist || 'Unknown';
-    const tags = toGenresArray(genres)
-      .map(g => `<li class="artists-genres-item">${escapeHtml(cleanText(g))}</li>`)
-      .join('');
+  return arr
+    .map(({ _id, genres, strArtist, strArtistThumb, strBiographyEN }) => {
+      const img = strArtistThumb || './img/placeholders/artist@1x.jpg'; // поклади плейсхолдер у public/img/placeholders/
+      const name = strArtist || 'Unknown';
+      const tags = toGenresArray(genres)
+        .map(
+          g =>
+            `<li class="artists-genres-item">${escapeHtml(cleanText(g))}</li>`
+        )
+        .join('');
 
-    return `
+      return `
 <li class="artists-card-item">
-  <img class="artists-image" src="${img}" alt="${escapeHtml(name)}" loading="lazy" />
+  <img class="artists-image" src="${img}" alt="${escapeHtml(
+        name
+      )}" loading="lazy" />
   <ul class="artists-genres-list">${tags}</ul>
   <p class="artists-name">${escapeHtml(name)}</p>
   <p class="artists-information">${textClamp(strBiographyEN || '', 144)}</p>
@@ -112,18 +125,24 @@ function createArtistsMarkup(arr = []) {
     </svg>
   </button>
 </li>`;
-  }).join('');
+    })
+    .join('');
 }
 
 function toGenresArray(genres) {
   if (Array.isArray(genres)) return genres;
   if (typeof genres === 'string') {
-    return genres.split(/[,/]/).map(s => s.trim()).filter(Boolean);
+    return genres
+      .split(/[,/]/)
+      .map(s => s.trim())
+      .filter(Boolean);
   }
   return [];
 }
 
-function cleanText(text = '') { return String(text).replace(/[,/]/g, ' '); }
+function cleanText(text = '') {
+  return String(text).replace(/[,/]/g, ' ');
+}
 
 function textClamp(text = '', maxDesktop = 144) {
   const w = window.innerWidth;
@@ -133,16 +152,15 @@ function textClamp(text = '', maxDesktop = 144) {
 }
 
 function escapeHtml(str = '') {
-  return String(str).replace(/[&<>"']/g, m => ({
-    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
-  })[m]);
-}
-
-// ==== тимчасово БЕЗ модалки ====
-// Просто логай клік по "Learn More", щоб перевірити, що все працює
-function onArtistCardClick(e) {
-  const btn = e.target.closest('.open-artist-modal');
-  if (!btn) return;
-  const id = btn.dataset.artistId;
-  if (id) console.log('[artists] clicked id:', id);
+  return String(str).replace(
+    /[&<>"']/g,
+    m =>
+      ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;',
+      }[m])
+  );
 }

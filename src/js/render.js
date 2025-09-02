@@ -27,7 +27,7 @@ function formatDuration(ms) {
 function formatYearsActive(start, end) {
   if (start && end) return `${start}–${end}`;
   if (start) return `${start}–present`;
-  return 'No information';
+  return 'Information missing';
 }
 
 function getPlaceholderDataUri(text = 'No Image', width = 150, height = 150) {
@@ -150,7 +150,7 @@ export function renderModalContent(artist, albums) {
       modalBioIcon.classList.replace('bx-caret-up', 'bx-caret-down');
     }
   });
-} 
+}
 
 function createAlbumHTML(album) {
   const { tracks, strAlbum } = album;
@@ -201,6 +201,6 @@ function createAlbumHTML(album) {
 //}
 
 //export function hideLoader() {
- // document.querySelector('.loader-container')?.classList.add('hidden');
+// document.querySelector('.loader-container')?.classList.add('hidden');
 
 //}
