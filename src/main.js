@@ -1,13 +1,14 @@
-
 import './js/feedback.js';
 
 import './js/artists.js';
+import './js/feedback.js';
 import axios from 'axios';
 import iziToast from 'izitoast';
 import boxicons from 'boxicons';
 
 import { refs } from './js/refs';
 import { closeModal, handleModalOpening } from './js/handlers';
+
 
 document.addEventListener('DOMContentLoaded', () => {
   const logoLinks = document.querySelectorAll('.logo, .logo-mobile');
