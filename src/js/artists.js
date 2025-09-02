@@ -3,7 +3,7 @@
 // Іконки у <use> очікуються у public/ (наприклад: public/icons.svg, public/img/artists.svg)
 
 import axios from 'axios';
-
+import boxicons from 'boxicons';
 // Базова адреса API
 axios.defaults.baseURL = 'https://sound-wave.b.goit.study/api';
 
@@ -120,9 +120,7 @@ function createArtistsMarkup(arr = []) {
   <p class="artists-information">${textClamp(strBiographyEN || '', 144)}</p>
   <button class="artists-learn-more-card-btn open-artist-modal" data-artist-id="${_id}">
     Learn More
-    <svg class="caret-right-icon" width="8" height="16" aria-hidden="true" focusable="false">
-      <use href="./icons-artists.svg#icon-caret-right"></use>
-    </svg>
+    <i class='bx  bx-caret-right bx-fade-right'  style='color:#fff'></i>
   </button>
 </li>`;
     })
