@@ -108,7 +108,7 @@ function createArtistsMarkup(arr = []) {
   <button class="artists-learn-more-card-btn open-artist-modal" data-artist-id="${_id}">
     Learn More
     <svg class="caret-right-icon" width="8" height="16" aria-hidden="true" focusable="false">
-      <use href="./icons.svg#icon-caret-right"></use>
+      <use href="./icons-artists.svg#icon-caret-right"></use>
     </svg>
   </button>
 </li>`;
