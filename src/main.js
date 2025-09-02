@@ -1,3 +1,5 @@
+import './js/feedback.js';
+
 import './js/artists.js';
 import './js/feedback.js';
 import axios from 'axios';
