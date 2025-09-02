@@ -12,6 +12,7 @@ export async function openModal(artistId = '65ada69eaf9f6d155db48612') {
   document.body.classList.add('modal-open');
   refs.modalContent.innerHTML =
     '<div class="modal-loading">Loading artist details...</div>';
+  refs.modalContent.innerHTML = '';
   showLoader();
 
   try {
@@ -19,7 +20,7 @@ export async function openModal(artistId = '65ada69eaf9f6d155db48612') {
       getArtistDetails(artistId),
       getArtistAlbums(artistId),
     ]);
-    refs.modalContent.innerHTML = '';
+
     renderModalContent(artistData, albumsData);
   } catch (error) {
     refs.modalContent.innerHTML = `<div class="modal-error">Failed to load artist details due to ${error}.</div>`;
@@ -35,15 +36,14 @@ export async function openModal(artistId = '65ada69eaf9f6d155db48612') {
   }
 }
 
-export async function handleModalOpening(e) {
-  const btn = e.target.closest('.artists-learn-more-card-btn');
-  if (!btn) return;
-
-  const id = btn.getAttribute('data-artist-id') || '';
-  if (id) {
+export function handleModalOpening(e) {
+  let id = '';
+  if (
+    e.target.nodeName === 'BUTTON' &&
+    e.target.classList.contains('artists-learn-more-card-btn')
+  ) {
+    id = e.target.getAttribute('data-artist-id') || '';
     openModal(id);
-  } else {
-    console.warn('Artist ID not found');
   }
 }
 
@@ -52,6 +52,6 @@ export function closeModal() {
   document.body.classList.remove('modal-open');
 
   setTimeout(() => {
-    refs.modalContentWrapper.innerHTML = '';
+    refs.modalContent.innerHTML = '';
   }, 300);
 }
