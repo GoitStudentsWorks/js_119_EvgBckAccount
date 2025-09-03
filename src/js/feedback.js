@@ -1,6 +1,7 @@
 import Swiper from 'swiper/bundle';
 import 'swiper/css/bundle';
 import 'css-star-rating/css/star-rating.css';
+import 'boxicons';
 import { fetchFeedbacks } from './api';
 
 let swiper; 
@@ -42,17 +43,12 @@ function renderStars(count) {
   const max = 5;
   let starsHTML = '';
   for (let i = 1; i <= max; i++) {
-    const starClass = i <= count ? 'star-filled' : 'star-outline';
-    starsHTML += `
-     <svg class="star-icon ${starClass}" width="24" height="24">
-        <use href="../img/icons/symbol-defs.svg#${
-          i <= count ? 'icon-star-filled' : 'icon-star-outline'
-        }"></use>
-      </svg>
-    `;
+    const starColor = i <= count ? '#764191' : 'rgba(0, 0, 0, 0.25)';
+    starsHTML += `<box-icon name="star" color="${starColor}" size="24px"></box-icon>`;
   }
   return starsHTML;
 }
+
 
 function initSwiper() {
   swiper = new Swiper('.feedback-swiper', {
