@@ -1,6 +1,14 @@
 /* ===== Header (mobile-first) ===== */
-.header{
-  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;   
+.header{ 
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px 20px;
+  transition: background-color 0.3s ease;
+  background-color: transparent; /* спочатку прозорий */
+  background-color:  var(--color-neutral-darkest);
+  z-index: 1000;
 }
 
 .header-container{
