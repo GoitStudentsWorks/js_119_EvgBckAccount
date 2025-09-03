@@ -94,11 +94,11 @@
 }
 
 .star-filled {
-background-color: #764191
+fill: #764191
 }
 
 .star-empty {
-background-color: transparent;
+fill: transparent;
 }
 
 
