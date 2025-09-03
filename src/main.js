@@ -20,10 +20,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  const openBtn = document.getElementById('open-menu');
-  const closeBtn = document.getElementById('close-menu');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const mobileLinks = mobileMenu?.querySelectorAll('.nav-list-mobile a') || [];
+  
+ window.addEventListener("scroll", () => {
+  const header = document.querySelector(".header");
+  if (window.scrollY > 50) {
+    header.classList.add("scrolled");
+  } else {
+    header.classList.remove("scrolled");
+  }
+});
+
+  const openBtn = document.getElementById("open-menu");
+  const closeBtn = document.getElementById("close-menu");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const mobileLinks = mobileMenu?.querySelectorAll(".nav-list-mobile a") || [];
+
 
   if (!openBtn || !closeBtn || !mobileMenu) return;
 
