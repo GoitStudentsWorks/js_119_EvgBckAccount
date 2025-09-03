@@ -8,6 +8,7 @@
     position: relative;
 }
 
+
 .feedback-button-prev,
 .feedback-button-next {
     position: absolute;
@@ -91,6 +92,15 @@
     vertical-align: middle;
     margin-right: 2px;
 }
+
+.star-filled {
+background-color: #764191
+}
+
+.star-empty {
+background-color: transparent;
+}
+
 
 .star-icon.star-filled {
     color: rgba(118, 65, 145, 1);

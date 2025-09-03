@@ -43,8 +43,8 @@ function renderStars(count) {
   const max = 5;
   let starsHTML = '';
   for (let i = 1; i <= max; i++) {
-    const starColor = i <= count ? '#764191' : 'rgba(0, 0, 0, 0.25)';
-    starsHTML += `<box-icon name="star" color="${starColor}" size="24px"></box-icon>`;
+    const isFilled = i <= count;
+    starsHTML += `<box-icon name="star" color="#764191" class="${isFilled ? 'star-filled' : 'star-empty'}" size="24px"></box-icon>`;
   }
   return starsHTML;
 }
