@@ -82,12 +82,12 @@ function renderCustomPagination() {
   if (total === 0) return;
 
   const first = 0;
-  const middle = Math.floor(total / 2);
+  const middle = Math.round(total / 2);
   const last = total - 1;
 
   const bulletData = [first, middle, last];
 
-  bulletData.forEach(index => {
+  swiper.slides.forEach((_slide, index) => {
     const bullet = document.createElement('span');
     bullet.classList.add('swiper-pagination-bullet');
     bullet.setAttribute('data-slide-index', index);
