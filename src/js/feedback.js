@@ -43,8 +43,14 @@ function renderStars(count) {
   const max = 5;
   let starsHTML = '';
   for (let i = 1; i <= max; i++) {
-    const isFilled = i <= count;
-    starsHTML += `<box-icon name="star" color="#764191" class="${isFilled ? 'star-filled' : 'star-empty'}" size="24px"></box-icon>`;
+    const starClass = i <= count ? 'star-filled' : 'star-outline';
+    starsHTML += `
+     <svg class="star-icon ${starClass}" width="24" height="24">
+        <use href="/icons/symbol-defs.svg#${
+          i <= count ? 'icon-star-filled' : 'icon-star-outline'
+        }"></use>
+      </svg>
+    `;
   }
   return starsHTML;
 }
