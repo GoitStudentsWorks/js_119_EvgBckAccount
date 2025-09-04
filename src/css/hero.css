@@ -167,7 +167,8 @@
     gap: 24px;
     align-items: center;
     text-align: center;
-    max-width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
   }
 
   .main-title {
@@ -216,7 +217,8 @@
   }
 
   .hero-first-block {
-    max-width: 100%;
+    max-width: 704px;
+    margin: 0 auto;
     padding-right: 0;
     text-align: left;
     align-items: flex-start;
