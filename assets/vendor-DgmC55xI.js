@@ -75,4 +75,4 @@ It can be › `+d);return}n||window.innerWidth<=h?p.position=="bottomLeft"||p.po
     <rect fill="${o}" width="${t}" height="${e}"/>
     <text fill="${u}" font-family="${i}" font-size="${n}" dy="${a}" font-weight="${r}" x="50%" y="50%" text-anchor="middle">${s}</text>
   </svg>`.replace(/[\t\n\r]/gim,"").replace(/\s\s+/g," ").replace(/'/gim,"\\i");if(d){const g=encodeURIComponent(y).replace(/\(/g,"%28").replace(/\)/g,"%29");return`data:image/svg+xml;charset=${f},${g}`}return y}export{ie as S,Y as a,ka as i,Ra as s};
-//# sourceMappingURL=vendor-BkpaER89.js.map
+//# sourceMappingURL=vendor-DgmC55xI.js.map
